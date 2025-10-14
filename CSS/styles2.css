@@ -1,0 +1,700 @@
+/* ==================================== */
+/* 0. VARIABLES Y RESET */
+/* ==================================== */
+:root {
+    /* Paleta de Colores (Negro/Dorado/Gris) */
+    --color-primary: #111111;    /* Negro Profundo (Fondo principal) */
+    --color-secondary: #D4AF37;  /* Dorado Brillante (Botones de Acción) */
+    --color-accent: #B58E4A;     /* Dorado de Acento (Títulos, Logo) */
+    --color-text-dark: #F0F0F0;  /* Gris Claro (Texto principal sobre fondo oscuro) */
+    --color-text-light: #9a9a9a; /* Gris Medio (Texto secundario, descripciones) */
+    --color-bg-light: #252525;   /* Gris Oscuro (Fondos de secciones contrastantes) */
+
+    /* Tipografía */
+    --font-family-sans: Georgia, 'Times New Roman', Times, serif; 
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth; /* smooth-scroll */
+}
+
+body {
+    font-family: var(--font-family-sans);
+    color: var(--color-text-dark); /* Texto principal ahora es claro */
+    line-height: 1.5;
+    background-color: var(--color-primary); /* Fondo principal ahora es negro */
+}
+
+/* ==================================== */
+/* 1. LAYOUT Y UTILIDADES GENERALES */
+/* ==================================== */
+.container {
+    max-width: 1280px; /* max-w-7xl */
+    margin-left: auto; /* mx-auto */
+    margin-right: auto; /* mx-auto */
+    padding-left: 1rem; /* px-4 */
+    padding-right: 1rem; /* px-4 */
+}
+
+/* Ajuste de padding en sm y lg */
+@media (min-width: 640px) {
+    .container {
+        padding-left: 1.5rem; /* sm:px-6 */
+        padding-right: 1.5rem; /* sm:px-6 */
+    }
+}
+@media (min-width: 1024px) {
+    .container {
+        padding-left: 2rem; /* lg:px-8 */
+        padding-right: 2rem; /* lg:px-8 */
+    }
+}
+
+.hidden {
+    display: none !important;
+}
+
+.section-padding {
+    padding-top: 5rem; /* py-20 */
+    padding-bottom: 5rem; /* py-20 */
+}
+
+.section-light-bg {
+    background-color: var(--color-bg-light); /* Gris Oscuro */
+}
+
+.section-white-bg {
+    background-color: var(--color-primary); /* Negro principal */
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 4rem; /* mb-16 */
+}
+
+.section-title {
+    font-size: 2.25rem; /* text-3xl */
+    font-weight: 700; /* font-bold */
+    color: var(--color-accent); /* Dorado de Acento */
+    margin-bottom: 1rem; /* mb-4 */
+}
+@media (min-width: 768px) {
+    .section-title {
+        font-size: 2.5rem; /* md:text-4xl */
+    }
+}
+
+.section-subtitle {
+    font-size: 1.25rem; /* text-xl */
+    color: var(--color-text-light);
+    max-width: 48rem; /* max-w-3xl */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ==================================== */
+/* 2. BOTONES */
+/* ==================================== */
+.btn {
+    display: block; /* Por defecto en móvil */
+    padding: 0.75rem 1.5rem; /* px-4 py-2 */
+    border-radius: 0.5rem; /* rounded-lg */
+    font-weight: 600; /* font-semibold */
+    text-align: center; /* text-center */
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background-color: var(--color-secondary); /* Dorado de Acción */
+    color: var(--color-primary); /* Letra negra */
+}
+.btn-primary:hover {
+    background-color: var(--color-accent); /* Dorado de Acento al hover */
+    color: var(--color-primary);
+}
+
+.btn-white {
+    background-color: var(--color-text-dark); /* Gris Claro */
+    color: var(--color-primary); /* Letra negra */
+}
+.btn-white:hover {
+    background-color: var(--color-text-light); /* Gris Medio al hover */
+    color: var(--color-primary);
+}
+
+.btn-outline-white {
+    border: 2px solid var(--color-text-dark); /* Borde Gris Claro */
+    color: var(--color-text-dark); /* Letra Gris Claro */
+    background-color: transparent;
+}
+.btn-outline-white:hover {
+    background-color: var(--color-text-dark);
+    color: var(--color-primary);
+}
+
+
+/* ==================================== */
+/* 3. NAVEGACIÓN (NAVBAR) */
+/* ==================================== */
+.navbar {
+    background-color: var(--color-primary); /* Negro */
+    box-shadow: 0 4px 6px rgba(212, 175, 55, 0.2); /* Sombra dorada */
+    position: fixed; /* fixed */
+    width: 100%; /* w-full */
+    top: 0; /* top-0 */
+    z-index: 1000; /* z-50 */
+}
+
+.nav-content {
+    display: flex; /* flex */
+    justify-content: space-between; /* justify-between */
+    align-items: center; /* items-center */
+    height: 4rem; /* h-16 */
+}
+
+.logo {
+    font-size: 1.5rem; /* text-2xl */
+    font-weight: 700; /* font-bold */
+    color: var(--color-accent); /* Dorado de Acento */
+}
+
+/* Desktop Menu */
+.desktop-menu {
+    display: none; /* hidden */
+}
+@media (min-width: 768px) {
+    .desktop-menu {
+        display: block; /* md:block */
+        margin-left: 2.5rem; /* ml-10 */
+    }
+    .desktop-menu .nav-link,
+    .desktop-menu .btn-primary {
+        margin-left: 2rem; /* space-x-8 */
+        display: inline-block;
+    }
+}
+
+.nav-link {
+    color: var(--color-text-light); /* Gris Medio */
+    padding: 0.5rem 0.75rem; /* px-3 py-2 */
+    font-size: 0.875rem; /* text-sm */
+    font-weight: 500; /* font-medium */
+    text-decoration: none;
+}
+.nav-link:hover, .nav-link.active {
+    color: var(--color-secondary); /* Dorado de Acción */
+}
+
+/* Mobile Menu Toggle */
+.mobile-menu-toggle {
+    display: block;
+}
+@media (min-width: 768px) {
+    .mobile-menu-toggle {
+        display: none; /* md:hidden */
+    }
+}
+
+.menu-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text-dark); /* Gris Claro */
+}
+.menu-button:hover {
+    color: var(--color-secondary);
+}
+
+.icon-menu {
+    height: 1.5rem; /* h-6 */
+    width: 1.5rem; /* w-6 */
+}
+
+/* Mobile Menu Links */
+.mobile-menu {
+    border-top: 1px solid var(--color-bg-light); /* Borde Gris Oscuro */
+    background-color: var(--color-primary); /* Negro */
+}
+.mobile-nav-links {
+    padding: 0.5rem 0;
+}
+.mobile-nav-link {
+    display: block; /* block */
+    padding: 0.5rem 0.75rem; /* px-3 py-2 */
+    color: var(--color-text-dark); /* Gris Claro */
+}
+.mobile-nav-link:hover {
+    color: var(--color-secondary);
+}
+
+
+/* ==================================== */
+/* 4. HERO SECTION */
+/* ==================================== */
+.hero-section {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-bg-light) 100%); /* Degradado Negro a Gris Oscuro */
+    color: var(--color-text-dark); /* Gris Claro */
+    padding-top: 5rem; /* pt-20 (espacio para la nav fija) */
+}
+
+.hero-content-wrapper {
+    padding-top: 5rem; /* py-20 */
+    padding-bottom: 5rem;
+}
+
+.hero-grid {
+    display: grid;
+    gap: 3rem; /* gap-12 */
+    align-items: center;
+}
+@media (min-width: 768px) {
+    .hero-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)); /* md:grid-cols-2 */
+    }
+}
+
+.hero-title {
+    font-size: 2.25rem; /* text-4xl */
+    font-weight: 700;
+    margin-bottom: 1.5rem; /* mb-6 */
+}
+@media (min-width: 768px) {
+    .hero-title {
+        font-size: 3.75rem; /* md:text-6xl */
+    }
+}
+
+.hero-subtitle {
+    font-size: 1.25rem; /* text-xl */
+    color: var(--color-accent); /* Dorado de Acento */
+    margin-bottom: 1rem; /* mb-4 */
+}
+@media (min-width: 768px) {
+    .hero-subtitle {
+        font-size: 1.5rem; /* md:text-2xl */
+    }
+}
+
+.hero-description {
+    font-size: 1.125rem; /* text-lg */
+    color: var(--color-text-light); /* Gris Medio */
+    margin-bottom: 2rem; /* mb-8 */
+}
+
+.hero-buttons {
+    display: flex; /* flex */
+    gap: 1rem; /* gap-4 */
+}
+@media (max-width: 639px) {
+    .hero-buttons {
+        flex-direction: column; /* sm:flex-row */
+    }
+    .hero-buttons .btn {
+        width: 100%;
+    }
+}
+
+.hero-image {
+    display: flex;
+    justify-content: center;
+}
+
+.hero-circle {
+    width: 20rem; /* w-80 */
+    height: 20rem; /* h-80 */
+    background-color: rgba(212, 175, 55, 0.2); /* Dorado con 20% de opacidad */
+    border-radius: 9999px; /* rounded-full */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-icon {
+    width: 15rem; /* w-40 */
+    color: var(--color-accent); /* Dorado de Acento */
+}
+
+
+/* ==================================== */
+/* 5. ABOUT SECTION */
+/* ==================================== */
+.about-grid {
+    display: grid;
+    gap: 3rem; /* gap-12 */
+    align-items: center;
+}
+@media (min-width: 768px) {
+    .about-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)); /* md:grid-cols-2 */
+    }
+}
+
+.about-image-placeholder {
+    width: 100%;
+    height: 24rem; /* h-96 */
+    background: linear-gradient(135deg, var(--color-bg-light) 0%, var(--color-primary) 100%); /* Degradado Gris Oscuro a Negro */
+    border-radius: 0.5rem; /* rounded-lg */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-icon {
+    width: 15rem; /* w-32 */
+    color: var(--color-accent); /* Dorado de Acento */
+}
+
+.about-content-title {
+    font-size: 1.5rem; /* text-2xl */
+    font-weight: 700;
+    color: var(--color-accent); /* Dorado de Acento */
+    margin-bottom: 1.5rem; /* mb-6 */
+}
+
+.about-text {
+    color: var(--color-text-dark); /* Gris Claro */
+    margin-bottom: 1.5rem; /* mb-6 */
+}
+
+.list-wrapper {
+    margin-top: 1rem; /* space-y-4 */
+}
+
+.list-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem; /* space-y-4 */
+}
+
+.dot {
+    width: 0.5rem; /* w-2 */
+    height: 0.5rem; /* h-2 */
+    background-color: var(--color-secondary); /* Dorado de Acción */
+    border-radius: 9999px; /* rounded-full */
+    margin-right: 1rem; /* mr-4 */
+    flex-shrink: 0;
+}
+
+.list-item span {
+    color: var(--color-text-dark); /* Gris Claro */
+}
+
+
+/* ==================================== */
+/* 6. SERVICES SECTION */
+/* ==================================== */
+.services-grid {
+    display: grid;
+    gap: 2rem; /* gap-8 */
+}
+@media (min-width: 768px) {
+    .services-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr)); /* md:grid-cols-3 */
+    }
+}
+
+.service-card {
+    background-color: var(--color-bg-light); /* Gris Oscuro */
+    padding: 2rem; /* p-8 */
+    border-radius: 0.5rem; /* rounded-lg */
+    box-shadow: 0 10px 15px -3px rgba(212, 175, 55, 0.1), 0 4px 6px -2px rgba(212, 175, 55, 0.05); /* Sombra dorada */
+    border: 1px solid var(--color-bg-light); /* Borde sutil */
+}
+
+.card-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card-hover:hover {
+    transform: translateY(-5px); /* translateY(-5px) */
+    box-shadow: 0 20px 25px -5px rgba(212, 175, 55, 0.2); /* Sombra dorada más fuerte al hover */
+}
+
+.service-icon-box {
+    width: 4rem; /* w-16 */
+    height: 4rem; /* h-16 */
+    border-radius: 0.5rem; /* rounded-lg */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem; /* mb-6 */
+}
+
+.box-blue { background-color: var(--color-secondary); /* Dorado de Acción */ }
+.icon-blue { color: var(--color-primary); } /* Icono Negro */
+
+.box-green { background-color: var(--color-accent); /* Dorado de Acento */ }
+.icon-green { color: var(--color-primary); } /* Icono Negro */
+
+.box-purple { background-color: var(--color-secondary); /* Dorado de Acción */ }
+.icon-purple { color: var(--color-primary); } /* Icono Negro */
+
+.service-icon {
+    width: 2rem; /* w-8 */
+    height: 2rem; /* h-8 */
+}
+
+.service-title {
+    font-size: 1.25rem; /* text-xl */
+    font-weight: 700;
+    color: var(--color-accent); /* Dorado de Acento */
+    margin-bottom: 1rem; /* mb-4 */
+}
+
+.service-description {
+    color: var(--color-text-dark); /* Gris Claro */
+    margin-bottom: 1.5rem; /* mb-6 */
+}
+
+.service-list {
+    list-style: none;
+    font-size: 0.875rem; /* text-sm */
+    color: var(--color-text-light); /* Gris Medio */
+    margin-top: 0.5rem; /* space-y-2 */
+}
+.service-list li {
+    margin-top: 0.5rem;
+}
+
+
+/* ==================================== */
+/* 7. EXPERIENCE SECTION (Stats) */
+/* ==================================== */
+.stats-grid {
+    display: grid;
+    gap: 2rem; /* gap-8 */
+}
+@media (min-width: 768px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)); /* md:grid-cols-2 */
+    }
+}
+@media (min-width: 1024px) {
+    .stats-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr)); /* lg:grid-cols-4 */
+    }
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-circle {
+    width: 5rem; /* w-20 */
+    height: 5rem; /* h-20 */
+    border-radius: 9999px; /* rounded-full */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem; /* mx-auto mb-4 */
+}
+
+.stat-number {
+    font-size: 1.5rem; /* text-2xl */
+    font-weight: 700;
+    color: var(--color-primary); /* Negro (sobre circulos dorados) */
+}
+
+.circle-blue { background-color: var(--color-secondary); /* Dorado de Acción */ }
+.circle-green { background-color: var(--color-accent); /* Dorado de Acento */ }
+.circle-purple { background-color: var(--color-secondary); /* Dorado de Acción */ }
+.circle-orange { background-color: var(--color-accent); /* Gris Oscuro */ }
+
+.stat-title {
+    font-size: 1.25rem; /* text-xl */
+    font-weight: 700;
+    color: var(--color-accent); /* Dorado de Acento */
+    margin-bottom: 0.5rem; /* mb-2 */
+}
+
+.stat-description {
+    color: var(--color-text-light);
+}
+
+
+/* ==================================== */
+/* 8. CONTACT SECTION */
+/* ==================================== */
+.contact-grid {
+    display: grid;
+    gap: 3rem; /* gap-12 */
+}
+@media (min-width: 768px) {
+    .contact-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)); /* md:grid-cols-2 */
+    }
+}
+
+.contact-info-title {
+    font-size: 1.5rem; /* text-2xl */
+    font-weight: 700;
+    color: var(--color-accent); /* Dorado de Acento */
+    margin-bottom: 1.5rem; /* mb-6 */
+}
+
+.info-list {
+    margin-top: 1.5rem; /* space-y-6 */
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start; /* items-start */
+    margin-bottom: 1.5rem;
+}
+
+.info-icon-box {
+    width: 3rem; /* w-12 */
+    height: 3rem; /* h-12 */
+    border-radius: 0.5rem; /* rounded-lg */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem; /* mr-4 */
+    flex-shrink: 0;
+    background-color: var(--color-accent); /* Dorado de Acento */
+}
+
+.info-icon {
+    width: 1.5rem; /* w-6 */
+    height: 1.5rem; /* h-6 */
+    color: var(--color-primary); /* Negro */
+}
+
+.info-title-sm {
+    font-weight: 600;
+    color: var(--color-accent); /* Dorado de Acento */
+    margin-bottom: 0.25rem; /* mb-1 */
+}
+
+.info-text {
+    color: var(--color-text-light);
+}
+
+.contact-form {
+    margin-top: 1.5rem; /* space-y-6 */
+}
+
+.form-label {
+    display: block;
+    font-size: 0.875rem; /* text-sm */
+    font-weight: 500;
+    color: var(--color-text-dark); /* Gris Claro */
+    margin-top: 0.5rem; /* mb-2 */
+}
+
+.form-input, .form-select, .form-textarea {
+    width: 100%;
+    padding: 0.75rem 1rem; /* px-4 py-3 */
+    border: 1px solid var(--color-bg-light); /* Borde Gris Oscuro */
+    border-radius: 0.5rem; /* rounded-lg */
+    font-size: 1rem;
+    background-color: var(--color-bg-light); /* Fondo del input oscuro */
+    color: var(--color-text-dark); /* Letra clara dentro del input */
+    transition: border-color 0.3s, box-shadow 0.3s;
+    font-family: var(--font-family-sans);
+}
+
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+    outline: none;
+    border-color: var(--color-secondary);
+    box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.5); /* Sombra dorada al enfocar */
+}
+
+.form-textarea {
+    resize: vertical;
+}
+
+.form-submit-btn {
+    margin-top: 1.5rem;
+    width: 100%;
+}
+
+.form-message {
+    padding: 1rem; /* p-4 */
+    border-radius: 0.5rem; /* rounded-lg */
+    margin-top: 1rem; /* mt-4 */
+}
+
+.form-success {
+    background-color: rgba(181, 142, 74, 0.2); /* Dorado con 20% de opacidad */
+    border: 1px solid var(--color-accent); /* Borde Dorado de Acento */
+    color: var(--color-text-dark); /* Gris Claro */
+}
+
+
+/* ==================================== */
+/* 9. FOOTER */
+/* ==================================== */
+.footer {
+    background-color: var(--color-primary); /* Negro */
+    color: var(--color-text-dark); /* Gris Claro */
+    padding-top: 3rem; /* py-12 */
+    padding-bottom: 3rem;
+}
+
+.footer-grid {
+    display: grid;
+    gap: 2rem; /* gap-8 */
+}
+@media (min-width: 768px) {
+    .footer-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr)); /* md:grid-cols-3 */
+    }
+}
+
+.footer-title {
+    font-size: 1.5rem; /* text-2xl */
+    font-weight: 700;
+    color: var(--color-accent); /* Dorado de Acento */
+    margin-bottom: 1rem; /* mb-4 */
+}
+
+.footer-text {
+    color: var(--color-text-light); /* Gris Medio */
+    margin-bottom: 1rem;
+}
+
+.footer-secondary-text {
+    font-size: 0.875rem; /* text-sm */
+    color: var(--color-text-light); /* Gris Medio */
+}
+
+.footer-subtitle {
+    font-size: 1.125rem; /* text-lg */
+    font-weight: 600;
+    margin-bottom: 1rem; /* mb-4 */
+}
+
+.footer-list {
+    list-style: none;
+    margin-top: 0.5rem; /* space-y-2 */
+}
+.footer-list li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-link {
+    color: var(--color-text-light); /* Gris Medio */
+}
+.footer-link:hover {
+    color: var(--color-secondary); /* Dorado de Acción */
+}
+
+.footer-contact-list p {
+    margin-bottom: 0.5rem;
+}
+
+.footer-bottom {
+    border-top: 1px solid var(--color-bg-light); /* Borde Gris Oscuro */
+    margin-top: 2rem; /* mt-8 */
+    padding-top: 2rem; /* pt-8 */
+    text-align: center;
+    color: var(--color-text-light);
+}
