@@ -698,3 +698,56 @@ body {
     text-align: center;
     color: var(--color-text-light);
 }
+
+/* ==================================== */
+/* 10. ESTILOS SECCIÓN UNIVERSIDAD */
+/* ==================================== */
+
+/* Estilo para la imagen del trabajo */
+.trabajo-imagen {
+    width: 30%;
+    max-width: 200px; /* Ajusta el tamaño máximo de la imagen si es necesario */
+    height: auto;
+    display: block;
+    margin: 20px auto; /* Centra la imagen y le da espacio */
+    border-radius: 0.5rem;
+}
+
+/* Estilo para el enlace debajo de la imagen */
+.trabajo-link-imagen {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.669);
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+.trabajo-link-imagen:hover {
+    color: var(--color-secondary);
+}
+
+/* Estilo para los enlaces grandes de "Ver Encuesta" y "Ver Presentación" */
+.trabajo-link {
+    display: block;
+    font-size: 1.1rem; /* Letra más grande */
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.669);
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+.trabajo-link:hover {
+    color: var(--color-secondary);
+}
+
+/* Contenedor para centrar verticalmente los enlaces que están solos */
+.card-link-only {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra el contenido verticalmente */
+    align-items: center; /* Centra el contenido horizontalmente */
+    text-align: center;
+    min-height: 250px; /* Asegura una altura mínima para el centrado */
+}
